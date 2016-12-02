@@ -1,0 +1,13 @@
+HowlerJS
+
+Known to be the best audio lib for js.
+Howler aims for a balance of features and size;
+buzz being the smallest. 
+However Howler is built for use in game engines,
+and has a "pipeline" feature. This allows one sound to finish properly before next one plays.
+Also handles "interupts" properly too,
+wherein one sound may be interupted by another one.
+
+A very stable library, works without crashes and freezes
+especially resiliant to interupts.
+Exactly what is needed for HTML5

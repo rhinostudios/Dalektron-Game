@@ -1,0 +1,135 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>DALEKTRON Main Menu</title>
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			background-color: #000000;
+		}
+	</style>
+	<script src="pixiCL.js"></script>
+
+</head>
+<body>
+	<script>
+// SET THE STAGE
+//=====================================================================
+// Multiple Stages be Menu then Game
+// Note for Audio - Must use the HowlerJS Library
+// create an new instance of a pixi stage
+	//var stage = new PIXI.Container(0x66FF99);
+	//var stage = new PIXI.Stage(0x66FF99);
+	var renderer = PIXI.autoDetectRenderer(720, 540);
+	document.body.appendChild(renderer.view);
+	var stage = new PIXI.Container();
+	
+	//CREATE GLOBAL DEFAULTS FOR ALL OBJECTS
+	//DOWN HERE
+	
+	
+
+// LOAD TEXTURES
+//======================================================================
+  // Load Texture into Memory then we can display it as a Sprite
+	// create a texture from an image path .PNG or .JPG
+  // create a new Sprite using the texture
+	var t1 = PIXI.Texture.fromImage('F18.png'); //Sky
+	var t2 = PIXI.Texture.fromImage('F28.png'); //Bkgd 
+	var t3 = PIXI.Texture.fromImage('F38.png'); //Title
+	var t4 = PIXI.Texture.fromImage('F48.png'); //Dalek
+	var t5 = PIXI.Texture.fromImage('F58.png'); //START
+	var t6 = PIXI.Texture.fromImage('F68.png'); //HOW
+	var t7 = PIXI.Texture.fromImage('F78.png'); //HI
+	var t8 = PIXI.Texture.fromImage('F88.png'); //CREDS
+	var skyBack = new PIXI.Sprite(t1);
+	var menuBack = new PIXI.Sprite(t2);
+	var titleBack = new PIXI.Sprite(t3);
+	var dalekBack = new PIXI.Sprite(t4);
+	var startBn = new PIXI.Sprite(t5);
+	var howBn = new PIXI.Sprite(t6);
+	var hiBn = new PIXI.Sprite(t7);
+	var credBn = new PIXI.Sprite(t8);
+
+// POSITIONS			,AFTER INCLUDE DEFAULT SCALE
+//======================================================================
+// If a property is not needed, comment it out
+
+//skyBack.position.set(0,0); titleBack.position.set(28,154);
+skyBack.position.x = 0; skyBack.position.y = 0;
+titleBack.position.x = 28; titleBack.position.y = 154;
+dalekBack.position.x = 0; dalekBack.position.y = 0;
+menuBack.position.x = 0; menuBack.position.y = 0;
+startBn.position.x = 40; startBn.position.y = 275;
+howBn.position.x = 40; howBn.position.y = 324;
+hiBn.position.x = 40; hiBn.position.y = 375;
+credBn.position.x = 40;credBn.position.y = 424;
+
+//XJoin the Interactive class
+var Over = false;
+buttons = [startBn,howBn,hiBn,credBn];
+var btn = [
+startBn.interactive = true, howBn.interactive = true,
+hiBn.interactive = true, credBn.interactive = true];
+
+//XStart the event handler
+startBn.on('mouseover', onOver); startBn.on('mousedown', onClick);
+howBn.on('mouseover', onOver);howBn.on('mousedown', onClick);
+hiBn.on('mouseover', onOver); hiBn.on('mousedown', onClick); 
+credBn.on('mouseover', onOver);credBn.on('mousedown', onClick);
+
+/*stage.addChild(menuBack,skyBack,titleBack,
+//	CANNOT HAVE 	dalekBack,startBn,howBn,hiBn,
+//	MULTIPLE IN BRACKETS	credBn);*/
+
+stage.addChild(menuBack);//stage.addChild(skyBack);
+stage.addChild(titleBack);stage.addChild(dalekBack);
+stage.addChild(startBn);stage.addChild(howBn);
+stage.addChild(hiBn);stage.addChild(credBn);	
+
+// FUNCTIONS
+//=======================================================================
+  function onClick (eventData){
+  //stage.removeChildrenAt(3,8);}
+  container.worldVisible=false;
+  animate();}
+  
+  function onOver (eventData) {
+  this.scale.x += 0.25; this.scale.y += 0.25;
+  sleep(500); console.log("hello js sleep !"); 		//Sleep 1000 = 1s
+  if ((this.scale.x >= 0.5) && (this.scale.y >= 0.5)){
+  this.interactive = false;}
+  }
+  //sleep(500);
+  //reset();}													//Separate RESET funct
+
+  //var Over = false;}											//Array RESET
+  //if (Over = false){
+  //buttons.scale.x = 0.0; buttons.scale.y = 0.0}
+
+  //sleep(500);													//Sleep RESET
+  //this.scale.x -= 0.75; this.scale.y -= 0.75}
+  
+  //if ((this.scale.x <= 0.5) && (this.scale.y <= 0.5)){ 		//ON OFF RESET
+  //this.scale.x += 0.25; this.scale.y += 0.25;
+  //if ((this.scale.x == 0.75) && (this.scale.y == 0.75)){
+  //this.scale.x -= 0.75; this.scale.y -= 0.75}
+	
+	function sleep( sleepDuration ){
+    var now = new Date().getTime();
+    while(new Date().getTime() < now + sleepDuration){ /* do nothing */ } 
+	}
+
+// start animating
+animate();
+  
+  function animate() {
+	    //requestAnimFrame( animate ); appears 1st click.js 
+	    renderer.render(stage);
+		requestAnimationFrame( animate );
+	}
+//END OF FILE==============================================================
+	</script>
+	</body>
+</html>
